@@ -8,7 +8,14 @@ fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
 
 /// A Python module implemented in Rust.
 #[pymodule]
-fn scrust(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
-    Ok(())
+mod _rust {
+    use super::*;
+
+    #[pymodule_export]
+    use super::sum_as_string;
+
+    #[pymodule_init]
+    fn init(_m: &Bound<'_, PyModule>) -> PyResult<()> {
+        Ok(())
+    }
 }

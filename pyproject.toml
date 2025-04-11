@@ -4,6 +4,13 @@ build-backend = "maturin"
 
 [project]
 name = "scrust"
+description = "这是一个用 Rust 实现的 scrapyd 高性能 SDK，既支持同步操作也支持协程模式，并通过 pyo3 封装成易用的 Python 库。"
+readme = "README.md"
+authors = [
+    { name = "屿你有关", email = "978814197@qq.com" },
+    { name = "Weilet", email = "Weilet_Sun@outlook.com" },
+]
+license = { file = "LICENSE" }
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Rust",
@@ -11,5 +18,16 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/OxideZoo/scrust"
+Repository = "https://github.com/OxideZoo/scrust.git"
+
+
 [tool.maturin]
-features = ["pyo3/extension-module"]
+python-source = "src"
+python-packages = ["scrust"]
+manifest-path = "src/rust/Cargo.toml"
+module-name = "scrust.backends.bindings._rust"
+features = ["pyo3/extension-module", "pyo3/abi3-py38"]
+abi3-py-version = "3.8"

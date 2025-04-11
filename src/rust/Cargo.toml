@@ -1,0 +1,13 @@
+[package]
+name = "scrust"
+version.workspace = true
+edition.workspace = true
+description.workspace = true
+publish.workspace = true
+
+[lib]
+name = "scrust"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3.workspace = true
